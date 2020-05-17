@@ -1,4 +1,4 @@
-const querystr = "/register?name35&width=39&time=2000";
+const querystr = "/register?name=35&width=39&time=2000";
 
 const usp = new URLSearchParams(querystr);
 
