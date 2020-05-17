@@ -64,16 +64,41 @@
 <h3 class="session">Print Page</h3> 
 
 
-</head>
-
-
-
-
-
-
 <p></p>
 <div class="line"></div>
+</head>
+
+<!-- end of heading -->
+
+
+
+
+<!-- Creating new lines of update -->
+
 <body>
+<script>
+function myFunction() {
+
+var div = document.createElement('div');
+var lw = 0;
+var rw = 0;
+
+
+div.innerHTML = "<p></p><div style='font-size:20px'>left wheel: " + lw + "</div>" + "<p></p><div style='font-size:20px'> right wheel: " + rw + "</div>" + "<br><br><br>";
+
+
+
+document.body.appendChild(div);
+
+
+}
+</script>
+
+<p></p>
+<button onclick="myFunction()">Calculate</button>
+
+
+
 </body>
 
 <html>
