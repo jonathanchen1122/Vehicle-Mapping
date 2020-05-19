@@ -91,27 +91,61 @@
 <!-- Creating new lines of update -->
 
 <body>
+
+<style>
+.adjuster {
+	margin-left: 10%;
+}
+
+.column {
+  float: left;
+  width: 200px;
+  padding: 10px;
+  height: 50px;
+}
+</style>
+
 <script>
+var lw = 0;
+var rw = 0;
+var t = 0;
+var interv = 1;
+
 function myFunction() {
 
 var div = document.createElement('div');
-var lw = 0;
-var rw = 0;
 
 
-div.innerHTML = "<p></p><div style='font-size:20px'>left wheel: " + lw + "</div>" + "<p></p><div style='font-size:20px'> right wheel: " + rw + "</div>" + "<br><br><br>";
+div.innerHTML =  
+  "<br><br><br><br>" + "<strong><i><h2>Interval " + interv + "</h2></i></strong><br>" +
+  "<label for='lname'>Left Wheel:</label><br>" +
+  "<input type='number' id='lname' name='lname' value='0.00'>&nbsp m<br><br>" + 
+  "<label for='lname'>Right Wheel:</label><br>"+
+  "<input type='number' id='lname' name='lname' value='0.00'>&nbsp m<br><br>"+
+  "<label for='lname'>Duration:</label><br>"+
+  "<input type='number' id='lname' name='lname' value='1000'>&nbsp ms";
 
-
+interv++;
 
 document.body.appendChild(div);
 
 
 }
 </script>
+<br><br>
+<div class="column" style="background-color:#aaa;">
 
-<p></p>
-<button onclick="myFunction()">Calculate</button>
+  <label for="fname">Name:</label><br>
+  <input type="text" id="fname" name="fname" value="John">
 
+  
+<div>
+
+
+<div class="adjuster">
+<button onclick="myFunction()">intervals</button>
+<button onclick="			">save</button>
+</div>
 
 
 </body>
