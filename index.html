@@ -98,11 +98,17 @@
 }
 
 .column {
-  float: left;
+  margin: auto;
   width: 200px;
   padding: 10px;
-  height: 50px;
+  height: 250px;
 }
+
+center {
+  margin: auto;
+}
+
+
 </style>
 
 <script>
@@ -113,22 +119,16 @@ var interv = 1;
 
 function myFunction() {
 
-var div = document.createElement('div');
+lw = lw + parseFloat(document.getElementById("lname").value);
+rw = rw + parseFloat(document.getElementById("wname").value);
+t = t + parseFloat(document.getElementById("tname").value);
 
 
-div.innerHTML =  
-  "<br><br><br><br>" + "<strong><i><h2>Interval " + interv + "</h2></i></strong><br>" +
-  "<label for='lname'>Left Wheel:</label><br>" +
-  "<input type='number' id='lname' name='lname' value='0.00'>&nbsp m<br><br>" + 
-  "<label for='lname'>Right Wheel:</label><br>"+
-  "<input type='number' id='lname' name='lname' value='0.00'>&nbsp m<br><br>"+
-  "<label for='lname'>Duration:</label><br>"+
-  "<input type='number' id='lname' name='lname' value='1000'>&nbsp ms";
-
-interv++;
-
-document.body.appendChild(div);
-
+alert( document.getElementById("fname").value + "'s Info Updated.\n The current Info is:\n\n left Wheel: " + lw + "\n\n Right Wheel: " + rw +"\n\n Duration: " + t);
+document.getElementById("fname").value = "JohnExample";
+document.getElementById("lname").value = 0.00;
+document.getElementById("wname").value = 0.00;
+document.getElementById("tname").value = 0;
 
 }
 
@@ -141,25 +141,32 @@ var saveName = document.getElementById("fname").value;
 
 localStorage.setItem("savingName",saveName);
 alert("Your information have been saved, " + saveName);
-
 }
 
 </script>
 <br><br>
 <div class="column" style="background-color:#aaa;">
 
-  <label for="fname">Name:</label><br>
+  <label for="fname" class="center">Name:</label><br>
   <input type="text" id="fname" value="John">
-
   
+   <br><strong></strong><br>
+  <label for='lname'>Left Wheel:</label><br>
+  <input type='number' id='lname' name='lname' value='0.00'>&nbsp m<br>
+  
+  <br><label for='lname'>Right Wheel:</label><br>
+<input type='number' id='wname' name='lname' value='0.00'>&nbsp m<br><br><label for='lname'>
+
+Duration:</label><br><input type='number' id='tname' name='lname' value='1000'>&nbsp ms
+
+  <br><br>
 <div>
 
 
 <div class="adjuster">
-<button onclick="myFunction()">intervals</button>
-<button onclick="saveFunction()">save</button>
+<button onclick="myFunction()">update</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+<button onclick="saveFunction()">end</button>
 </div>
-
 
 </body>
 
