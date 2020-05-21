@@ -115,13 +115,19 @@ center {
 var lw = 0;
 var rw = 0;
 var t = 0;
-var interv = 1;
 
 function myFunction() {
 
 lw = lw + parseFloat(document.getElementById("lname").value);
 rw = rw + parseFloat(document.getElementById("wname").value);
 t = t + parseFloat(document.getElementById("tname").value);
+
+var coolName = document.getElementById("fname").value;
+
+localStorage.setItem("Name",coolName);
+localStorage.setItem("Left",lw);
+localStorage.setItem("Right",rw);
+localStorage.setItem("Time",t);
 
 
 alert( document.getElementById("fname").value + "'s Info Updated.\n The current Info is:\n\n left Wheel: " + lw + "\n\n Right Wheel: " + rw +"\n\n Duration: " + t);
@@ -141,6 +147,11 @@ var saveName = document.getElementById("fname").value;
 
 localStorage.setItem("savingName",saveName);
 alert("Your information have been saved, " + saveName);
+
+lw = 0;
+rw = 0;
+t = 0;
+
 }
 
 </script>
