@@ -3,8 +3,24 @@
 <head>
 
 <head>
+<script>
+function startName() {
+var a = localStorage.getItem("Name");
+document.getElementById("ImTheMap").value = "Mappings " + a;
 
-<h1>Mapping</h1>
+}
+</script>
+
+
+
+<div onload="startName()" ><h1 id="ImTheMap">Mapping</h1></div>
+
+
+
+
+
+
+
 </head>
 
 
@@ -20,7 +36,7 @@ canvas {
 var myGamePiece;
 
 function startGame() {
-    myGamePiece = new component(15, 15, "red", 225, 120);
+    myGamePiece = new component(15, 15, "red", 235, 215);
     myGameArea.start();
 }
 
@@ -28,7 +44,7 @@ var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
         this.canvas.width = 480;
-        this.canvas.height = 270;
+        this.canvas.height = 460;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
@@ -82,16 +98,137 @@ function stop() {
     myGamePiece.speedX = 0; 
     myGamePiece.speedY = 0; 
 }
+
+
+
+
+
+
+function countUp() {
+	if (myGamePiece.Y > 20) {
+    myGamePiece.speedX = 0; 
+    myGamePiece.speedY = -1; 
+    }
+}
+
+function countDown() {
+	if (myGamePiece.Y < 200) {
+    myGamePiece.speedX = 0; 
+    myGamePiece.speedY = 1; 
+    }
+}
+
+function countLeft() {
+	if (myGamePiece.X > 20) {
+    myGamePiece.speedX = -1; 
+    myGamePiece.speedY = 0;
+    }
+}
+
+function countRight() {
+	if (myGamePiece.X < 200) {
+    myGamePiece.speedX = 1; 
+    myGamePiece.speedY = 0;
+    }
+}
+
+function frontLeft() {
+	if (myGamePiece.Y > 20 && myGamePiece.X > 20 ) {
+    myGamePiece.speedX = -1; 
+    myGamePiece.speedY = -1; 
+    }
+}
+
+function frontRight() {
+	if (myGamePiece.Y > 20 && myGamePiece.X < 200 ) {
+    myGamePiece.speedX = 1; 
+    myGamePiece.speedY = -1; 
+    }
+}
+
+function backLeft() {
+    if (myGamePiece.Y < 200 && myGamePiece.X > 20 ) {
+    myGamePiece.speedX = -1; 
+    myGamePiece.speedY = 1; 
+    }
+}
+
+
+function backRight() {
+	if (myGamePiece.Y < 200 && myGamePiece.X < 200 ) {
+    myGamePiece.speedX = 1; 
+    myGamePiece.speedY = 1; 
+    }
+}
+
+
+
+function travel() {
+var LeftDist = localStorage.getItem("Left");
+var RightDist = localStorage.getItem("Right");
+var TotalTime = localStorage.getItem("Time");
+
+var diffCheck = LeftDist - RightDist;
+
+//straight wheels
+
+if (LeftDist == RightDist) {
+	if (LeftDist > 0) {
+		countUp();
+    }
+    else if (Left < 0) {
+    	countDown();
+    }
+    else {
+    myGamePiece.speedX = 0; 
+    myGamePiece.speedY = 0; 
+    }
+}
+
+else if (Math.abs(LeftDist) > Math.abs(RightDist)) {
+	if (LeftDist > RightDist) {
+    frontRight();
+    }
+    
+    if (LeftDist < RightDist) {
+    backRight();
+    }
+}
+
+else if (Math.abs(LeftDist) < Math.abs(RightDist)) {
+	if (LeftDist > RightDist) {
+    backLeft();
+    }
+    
+    if (LeftDist < RightDist) {
+    frontLeft();
+    }
+}
+
+document.getElementById("totalName").value = localStorage.getItem("Name");
+document.getElementById("totalDist").value = (LeftDist + RightDist)/2;
+document.getElementById("totalTime").value = TotalTime;
+
+
+}
+
+
 </script>
 
 <body style="text-align:center;margin: center;" onload="startGame()">
 
 <div style="text-align:center;margin: center;">
-  <button onclick="moveup()">UP</button><br><br>
+ 
+ <!--<button onclick="moveup()">UP</button><br><br>
   <button onclick="moveleft()">LEFT</button>
     <button onclick="stop()">stop</button>
   <button onclick="moveright()">RIGHT</button><br><br>
-  <button onclick="movedown()">DOWN</button>
+  <button onclick="movedown()">DOWN</button><br><br><br>-->
+  <button onclick="travel()">Begin Travel</button><br><br>
+  Name: <div id="totalName"></div>
+  Total Displacement: <div id="totalDist"></div>
+  Total Time: <div id="totalTime"></div>
+  
 </div>
 
 </body>
@@ -99,7 +236,7 @@ function stop() {
   
   
   
-  
+ 
   
   
   
